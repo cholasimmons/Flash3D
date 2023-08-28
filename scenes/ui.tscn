@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkcdcvfxyfp1k"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_h6wgl"]
+[ext_resource type="Texture2D" uid="uid://i3eblg6oaalb" path="res://assets/textures/Speedo_Dial.webp" id="2_h7qy0"]
+[ext_resource type="Texture2D" uid="uid://cye7qdj5xuslv" path="res://assets/textures/Speedo_Needle.webp" id="3_tvq44"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_h6wgl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(210, 360)
+layout_mode = 2
+color = Color(0, 0, 0, 0.643137)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 345.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/MarginContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="title" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Diagnostics
+"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Engine: On"
+
+[node name="Label2" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "RPM: 0"
+
+[node name="Label3" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "RPM: 0"
+
+[node name="Label4" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Speed: 0"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -265.0
+offset_top = -239.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Dial" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(163, 131)
+scale = Vector2(0.660156, 0.660156)
+texture = ExtResource("2_h7qy0")
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_direction = 1
+layout_mode = 2
+auto_translate = false
+theme_override_colors/font_color = Color(0.984314, 0.901961, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Needle" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(163, 131)
+scale = Vector2(0.664063, 0.664063)
+texture = ExtResource("3_tvq44")

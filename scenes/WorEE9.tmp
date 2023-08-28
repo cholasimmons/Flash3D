@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvf0pt4drosin"]
+
+[ext_resource type="Script" path="res://scripts/Actor.gd" id="1_27g28"]
+[ext_resource type="PackedScene" uid="uid://dkcdcvfxyfp1k" path="res://scenes/ui.tscn" id="2_pdkur"]
+
+[sub_resource type="GDScript" id="GDScript_n06pi"]
+script/source = "extends Node3D
+
+# var ui: CanvasLayer = $ui
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8aiui"]
+diffuse_mode = 1
+albedo_color = Color(0.376471, 0.282353, 0.0705882, 1)
+
+[node name="World" type="Node3D"]
+script = SubResource("GDScript_n06pi")
+
+[node name="Ground" type="CSGBox3D" parent="."]
+snap = 0.01
+size = Vector3(10, 0.01, 10)
+material = SubResource("StandardMaterial3D_8aiui")
+
+[node name="Actor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_27g28")
+
+[node name="ui" parent="." instance=ExtResource("2_pdkur")]
+
+[connection signal="_on_click" from="Actor" to="ui" method="_on_actor_on_click"]

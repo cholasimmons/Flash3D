@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5e0vj3fwurht"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e44rb"]
+friction = 0.19
+bounce = 0.84
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qyr5u"]
+size = Vector3(5.17865, 2.39046, 0.421401)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ktk5"]
+diffuse_mode = 1
+albedo_color = Color(0.596078, 0.596078, 0.596078, 1)
+metallic_specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpddi"]
+albedo_color = Color(0.466667, 0.466667, 0.466667, 1)
+metallic_specular = 0.0
+
+[node name="wall" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_e44rb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0961908, 1.17285, 0)
+shape = SubResource("BoxShape3D_qyr5u")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(5, 2, 0.2)
+material = SubResource("StandardMaterial3D_7ktk5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_mpddi")
+size = Vector3(0.4, 2, 0.4)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGBox3D"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.215197, 0)
+size = Vector3(2.5, 1, 0.454203)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.2, 0)
+radius = 0.2
+radial_segments = 8
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.400349, 0.916363, 0, -0.916363, -0.400349, -2.49503, 2.53959, 0.216407)
+light_color = Color(0.858824, 0.815686, 0.67451, 1)
+shadow_enabled = true
+spot_range = 3.84267
+spot_angle = 33.005
